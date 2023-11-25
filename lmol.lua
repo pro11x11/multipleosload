@@ -17,6 +17,13 @@ print("loading os")
 for i = 1, 51 do
   sleep(0.1)
   term.write("-")
+  print("")
+  print("")
+  print("if you get an error report to the creator of os not me")
+  print("if this is an bootloader error report to me")
+  print("if you want to remove that the line are 20-25")
+  print ("by lebg2999")
+  
 end
 
 -- Vérification de l'appui sur une touche pendant le chargement
