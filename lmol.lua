@@ -38,7 +38,7 @@ if os.pullEvent("key") then
   print("[3] reboot")
   print("[4] mini os")
   print("")
-  print("bootloader version 1.2.6")
+  print("bootloader version 1.2.7")
   print("by lebg2999")
   local choice = tonumber(read())
   if choice == 1 then
