@@ -1,122 +1,131 @@
 -- Configuration
-local modemPresent = false -- Changer en true si un modem est connecté
+local modemPresent = false -- Set to true if a modem is connected
 
--- Fonction pour afficher un message d'erreur
-local function afficherErreur(message)
+-- Function to display an error message
+local function displayError(message)
   term.clear()
   term.setCursorPos(1, 1)
   print(message)
-  print("press any key to continue...")
+  print("Press any key to continue...")
   os.pullEvent("key")
 end
 
--- Chargement avec barre de progression
+-- Loading with progress bar
 term.clear()
 term.setCursorPos(1, 1)
-print("loading os")
+print("Loading OS")
 for i = 1, 51 do
   sleep(0.1)
   term.write("-")
-  print("")
-  print("")
-  print("if you get an error report to the creator of os not me")
-  print("if this is an bootloader error report to me")
-  print("if you want to remove that the line are 20-25")
-  print ("by lebg2999")
-  
 end
+print("\n\nIf you get an error, report to the creator of the OS, not me.")
+print("If this is a bootloader error, report to me.")
+print("If you want to remove that line, it's lines 20-25.")
+print("by lebg2999")
 
--- Vérification de l'appui sur une touche pendant le chargement
-if os.pullEvent("key") then
+-- Function to display the boot menu
+local function displayBootMenu()
   term.clear()
   term.setCursorPos(1, 1)
   print("---------------------------------------------------")
-  print("pick an os")
+  print("Pick an OS")
   print("---------------------------------------------------")
-  print("[1] your os")
-  print("[2] your 2 os")
-  print("[3] reboot")
-  print("[4] mini os")
-  print("")
-  print("bootloader version 1.2.7")
+  print("[1] Your OS")
+  print("[2] Your 2nd OS")
+  print("[3] Reboot")
+  print("[4] Mini OS")
+  print("\nBootloader version 1.2.7")
   print("by lebg2999")
-  local choice = tonumber(read())
-  if choice == 1 then
---code for first os
-  elseif choice == 2 then
---code for 2 os
-  elseif choice == 3 then --reboot
-  shell.run("reboot")
-  elseif choice == 4 then --mini os (france)
-  -- Fonction pour afficher le menu de démarrage
-local function afficherMenuDemarrage()
-  term.clear()
-  term.setCursorPos(1, 1)
-  print("=== Menu de démarrage ===")
-  print("1. À propos")
-  print("2. Calculatrice")
-  print("0. Quitter")
-  write("Sélectionnez une option: ")
 end
 
--- Fonction pour afficher l'application "À propos"
-local function afficherAPropos()
+-- Function to display the mini OS menu
+local function displayMiniOSMenu()
   term.clear()
   term.setCursorPos(1, 1)
-  print("=== À propos ===")
-  print("Ceci est un os integré au bootloader.")
-  print("Système d'exploitation: Computercraft")
+  print("=== Startup Menu ===")
+  print("1. About")
+  print("2. Calculator")
+  print("0. Quit")
+  write("Select an option: ")
+end
+
+-- Function to display the "About" application
+local function displayAbout()
+  term.clear()
+  term.setCursorPos(1, 1)
+  print("=== About ===")
+  print("This is an OS integrated into the bootloader.")
+  print("Operating System: ComputerCraft")
   print("Version: 1.0")
-  print("Développeur: Lebg2999")
+  print("Developer: Lebg2999")
   print()
-  write("Appuyez sur n'importe quelle touche pour revenir au menu.")
+  write("Press any key to return to the menu.")
   os.pullEvent("key")
 end
 
--- Fonction pour afficher l'application "Calculatrice"
-local function afficherCalculatrice()
+-- Function to display the "Calculator" application
+local function displayCalculator()
   term.clear()
   term.setCursorPos(1, 1)
-  print("=== Calculatrice ===")
-  write("Entrez un calcul: ")
+  print("=== Calculator ===")
+  write("Enter a calculation: ")
   local input = read()
   local result = load("return " .. input)()
-  print("Résultat: " .. result)
+  print("Result: " .. result)
   print()
-  write("Appuyez sur n'importe quelle touche pour revenir au menu.")
+  write("Press any key to return to the menu.")
   os.pullEvent("key")
 end
 
--- Boucle principale
-while true do
-  afficherMenuDemarrage()
-  local choix = tonumber(read())
-  
-  if choix == 1 then
-    afficherAPropos()
-  elseif choix == 2 then
-    afficherCalculatrice()
-  elseif choix == 0 then
-    break  -- Quitter le programme
-  else
-    print("Option invalide. Veuillez réessayer.")
-    sleep(2)
+-- Main loop for mini OS
+local function miniOS()
+  while true do
+    displayMiniOSMenu()
+    local choice = tonumber(read())
+    
+    if choice == 1 then
+      displayAbout()
+    elseif choice == 2 then
+      displayCalculator()
+    elseif choice == 0 then
+      break -- Quit the program
+    else
+      print("Invalid option. Please try again.")
+      sleep(2)
+    end
   end
 end
 
-else
-    afficherErreur("invalid ")
+-- Check for key press during loading
+if os.pullEvent("key") then
+  displayBootMenu()
+  local choice = tonumber(read())
+  
+  if choice == 1 then
+    -- Code for first OS
+    while true do
+      -- GUI code for the first OS
+    end
+  elseif choice == 2 then
+    -- Code for second OS
+  elseif choice == 3 then
+    -- Reboot
+    shell.run("reboot")
+  elseif choice == 4 then
+    -- Mini OS
+    miniOS()
+  else
+    displayError("Invalid choice.")
   end
 else
   term.clear()
   term.setCursorPos(1, 1)
-  print("Démarrage de Windows 8.1...")
+  print("Starting Windows 8.1...")
   sleep(2)
-  -- also code for first os
+  -- Code for first OS
+  while true do
+    -- GUI code for the first OS
+  end
 end
 
--- Code for first os
-while true do
-  -- for gui
-end
 
